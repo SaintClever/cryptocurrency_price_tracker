@@ -25,10 +25,12 @@ class CryptoComponent extends Component {
     super(props);
     this.state = {
       value: 10,
-      coins: []
+      coins: [],
+      entry: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEntry = this.handleEntry.bind(this);
   }
 
 
@@ -44,17 +46,19 @@ class CryptoComponent extends Component {
 
   // Handle change for dropdown
   handleChange(e) {
-    console.log(e.target.value);
-    let url_00 = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=';
-    let url_01 = e.target.value;
-    let url_02 = '&page=1&sparkline=false'
-    let data = url_00 + url_01 + url_02;
+    // console.log(e.target.value);
+    // let url_00 = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=';
+    // let url_01 = e.target.value;
+    // let url_02 = '&page=1&sparkline=false'
+    // let data = url_00 + url_01 + url_02;
+
+    let data = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${e.target.value}&page=1&sparkline=false`;
 
     axios(data)
       .then(res => {
         let coins = res.data;
         this.setState({ coins })
-        console.log(coins);
+        // console.log(coins);
       }).catch(err => console.error(err));
     this.setState({ value: e.target.value });
   }
@@ -67,12 +71,17 @@ class CryptoComponent extends Component {
   }
 
 
+  handleEntry(e) {
+    this.setState({ entry: e.target.value })
+    // console.log(e.target.value);
+  }
+
   render() {
     return (
       <Container>
         <Row>
           <Col>
-            <h1>Logo</h1>
+            <h1>Crypto</h1>
           </Col>
         </Row>
         <br />
@@ -80,16 +89,16 @@ class CryptoComponent extends Component {
           <Col className="col-lg-2">
             <Form>
               <FormGroup >
-                <Label for="exampleSelect">Coin</Label>
-                <Input type="text" name="coin" id="coinName" placeholder="search coin" />
+                <Label for="coinName">Coin</Label>
+                <Input type="text" name="coin" id="coinName" placeholder="search coin" value={this.state.entry} onChange={this.handleEntry} />
               </FormGroup>
             </Form>
           </Col>
           <Col className="col-lg-2">
             <Form onSubmit={this.handleSubmit}>
               <FormGroup>
-                <Label for="select">Pages</Label>
-                <Input type="select" name="select" value={this.state.value} onChange={this.handleChange} >
+                <Label for="selectName">Display Count</Label>
+                <Input type="select" name="selectName" value={this.state.value} onChange={this.handleChange}>
                   {
                     options.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -117,20 +126,25 @@ class CryptoComponent extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.coins.map(coin => {
-                  return (
-                    <CoinComponent
-                      key={coin.id}
-                      name={coin.name}
-                      image={coin.image}
-                      symbol={coin.symbol}
-                      volume={coin.total_volume}
-                      price={coin.current_price}
-                      priceChange={coin.price_change_percentage_24h}
-                      marketcap={coin.market_cap}
-                    />
-                  );
-                })}
+                {
+                  this.state.coins
+                    .filter(coin => coin.name.toLowerCase().includes(this.state.entry))
+                    .map(coin => {
+                      return (
+                        <CoinComponent
+                          key={coin.id}
+                          name={coin.name}
+                          image={coin.image}
+                          symbol={coin.symbol}
+                          volume={coin.total_volume}
+                          price={coin.current_price}
+                          priceChange={coin.price_change_percentage_24h}
+                          marketcap={coin.market_cap}
+                        />
+                      );
+                    }
+                  )
+                }
               </tbody>
             </Table>
           </Col>
