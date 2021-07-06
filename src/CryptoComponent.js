@@ -76,14 +76,14 @@ class CryptoComponent extends Component {
       <Container>
         <Row>
           <Col>
-            <h1>Crypto</h1>
+            <h1>Crypto Price Tracker</h1>
           </Col>
         </Row>
         <br />
-        <Row>
+        <Row className="sticky-top">
           <Col className="col-lg-2">
             <Form>
-              <FormGroup >
+              <FormGroup>
                 <Label for="coinName">Coin</Label>
                 <Input type="text" name="coin" id="coinName" placeholder="search coin" value={this.state.entry} onChange={this.handleEntry} />
               </FormGroup>
@@ -106,6 +106,8 @@ class CryptoComponent extends Component {
             </Form>
           </Col>
         </Row>
+
+
         <Row>
           <Col>
             <Table dark responsive className="text-white">

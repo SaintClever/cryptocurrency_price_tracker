@@ -1,10 +1,13 @@
-# Cryptocurrency price tracker
+# Cryptocurrency Price Tracker
 
-Application used to monitor cryptocurrency price activity. Created with react.js and axios
+![cryptocurrency_tracker](assets/cryptocurrency_tracker.gif)
+
+- Application used to monitor cryptocurrency price activity
+- Created with react.js and axios
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory run:
 
 ### `yarn start`
 
