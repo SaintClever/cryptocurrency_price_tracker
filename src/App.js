@@ -2,7 +2,7 @@ import CryptoComponent from './CryptoComponent';
 
 function App() {
   return (
-    <div className="container" style={{ marginTop: "100px" }}>
+    <div className="container"  style={{ marginTop: "100px" }}>
       <div className="row">
         <CryptoComponent />
       </div>

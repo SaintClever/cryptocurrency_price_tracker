@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Row, Container, Col, Table } from 'reactstrap';
 import CoinComponent from './CoinComponent';
-import 
 
 
 const dummyData = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
@@ -68,14 +67,8 @@ class CryptoComponent extends Component {
 
 
   handleEntry(e) {
-    this.setState({ entry: e.target.value })
     // console.log(e.target.value);
-  }
-
-  uiUpdate(e) {
-    console.log('hello')
-    let body = document.getElementsByName('body');
-    body.className = "lightMode";
+    this.setState({ entry: e.target.value })
   }
 
   render() {
@@ -83,7 +76,7 @@ class CryptoComponent extends Component {
       <Container>
         <Row>
           <Col>
-            <h1 onClick={this.uiUpdate}>Crypto</h1>
+            <h1>Crypto</h1>
           </Col>
         </Row>
         <br />
