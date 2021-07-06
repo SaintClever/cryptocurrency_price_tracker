@@ -27,3 +27,9 @@ tr:hover td {
 a:hover {
     text-decoration: none;
 }
+
+.lightMode {
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    color: #282a36;
+}

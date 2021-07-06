@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Row, Container, Col, Table } from 'reactstrap';
 import CoinComponent from './CoinComponent';
+import 
 
 
 const dummyData = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
@@ -47,11 +48,6 @@ class CryptoComponent extends Component {
   // Handle change for dropdown
   handleChange(e) {
     // console.log(e.target.value);
-    // let url_00 = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=';
-    // let url_01 = e.target.value;
-    // let url_02 = '&page=1&sparkline=false'
-    // let data = url_00 + url_01 + url_02;
-
     let data = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${e.target.value}&page=1&sparkline=false`;
 
     axios(data)
@@ -76,12 +72,18 @@ class CryptoComponent extends Component {
     // console.log(e.target.value);
   }
 
+  uiUpdate(e) {
+    console.log('hello')
+    let body = document.getElementsByName('body');
+    body.className = "lightMode";
+  }
+
   render() {
     return (
       <Container>
         <Row>
           <Col>
-            <h1>Crypto</h1>
+            <h1 onClick={this.uiUpdate}>Crypto</h1>
           </Col>
         </Row>
         <br />
