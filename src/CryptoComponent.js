@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Row, Container, Col, Table } from 'reactstrap';
 import CoinComponent from './CoinComponent';
+import { FadeTransform } from 'react-animation-components';
 
 
 const dummyData = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
@@ -74,78 +75,82 @@ class CryptoComponent extends Component {
   render() {
     return (
       <Container>
-        <Row>
-          <Col>
-            <h1>Crypto Price Tracker</h1>
-          </Col>
-        </Row>
-        <br />
-        <Row className="sticky-top">
-          <Col className="col-lg-2">
-            <Form>
-              <FormGroup>
-                <Label for="coinName">Coin</Label>
-                <Input type="text" name="coin" id="coinName" placeholder="search coin" value={this.state.entry} onChange={this.handleEntry} />
-              </FormGroup>
-            </Form>
-          </Col>
-          <Col className="col-lg-2">
-            <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <Label for="selectName">Display Count</Label>
-                <Input type="select" name="selectName" value={this.state.value} onChange={this.handleChange}>
-                  {
-                    options.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))
-                  }
-                </Input>
-              </FormGroup>
-            </Form>
-          </Col>
-        </Row>
-
-
-        <Row>
-          <Col>
-            <Table dark responsive className="text-white">
-              <thead>
-                <tr>
-                  <th>Logo</th>
-                  <th>Symbol</th>
-                  <th>Name</th>
-                  <th>price</th>
-                  <th>Price Change</th>
-                  <th>Volume</th>
-                  <th>Market Cap</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  this.state.coins
-                    .filter(coin => coin.name.toLowerCase().includes(this.state.entry))
-                    .map(coin => {
-                      return (
-                        <CoinComponent
-                          key={coin.id}
-                          name={coin.name}
-                          image={coin.image}
-                          symbol={coin.symbol}
-                          volume={coin.total_volume}
-                          price={coin.current_price}
-                          priceChange={coin.price_change_percentage_24h}
-                          marketcap={coin.market_cap}
-                        />
-                      );
+        <FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(50%)' }}>
+          <Row>
+            <Col>
+              <h1>Crypto Price Tracker</h1>
+            </Col>
+          </Row>
+          <br />
+          <Row className="sticky-top">
+            <Col className="col-lg-2">
+              <Form>
+                <FormGroup>
+                  <Label for="coinName">Coin</Label>
+                  <Input type="text" name="coin" id="coinName" placeholder="search coin" value={this.state.entry} onChange={this.handleEntry} />
+                </FormGroup>
+              </Form>
+            </Col>
+            <Col className="col-lg-2">
+              <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                  <Label for="selectName">Display Count</Label>
+                  <Input type="select" name="selectName" value={this.state.value} onChange={this.handleChange}>
+                    {
+                      options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
                     }
-                  )
-                }
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
+                  </Input>
+                </FormGroup>
+              </Form>
+            </Col>
+          </Row>
+        </FadeTransform>
+
+
+        <FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(50%)' }}>
+          <Row>
+            <Col>
+              <Table dark responsive className="text-white">
+                <thead>
+                  <tr>
+                    <th>Logo</th>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>price</th>
+                    <th>Price Change</th>
+                    <th>Volume</th>
+                    <th>Market Cap</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    this.state.coins
+                      .filter(coin => coin.name.toLowerCase().includes(this.state.entry))
+                      .map(coin => {
+                        return (
+                          <CoinComponent
+                            key={coin.id}
+                            name={coin.name}
+                            image={coin.image}
+                            symbol={coin.symbol}
+                            volume={coin.total_volume}
+                            price={coin.current_price}
+                            priceChange={coin.price_change_percentage_24h}
+                            marketcap={coin.market_cap}
+                          />
+                        );
+                      }
+                      )
+                  }
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </FadeTransform>
       </Container>
     )
   }
