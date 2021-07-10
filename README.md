@@ -1,6 +1,6 @@
 # [Cryptocurrency Price Tracker](https://cryptocurrency-price-tracker-np.netlify.app/)
 
-<a href="https://cryptocurrency-price-tracker-np.netlify.app/" target="_blank">https://cryptocurrency-price-tracker-np.netlify.app/</a>
+## [https://cryptocurrency-price-tracker-np.netlify.app/](https://cryptocurrency-price-tracker-np.netlify.app/)
 
 ![cryptocurrency_tracker](assets/cryptocurrency_tracker.gif)
 
