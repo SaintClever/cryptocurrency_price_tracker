@@ -11,5 +11,4 @@
 
 In the project directory run:
 
-### `yarn start`
-
+### `yarn start or npm start`
